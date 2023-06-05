@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.37877670.css",
+    "main.js": "/static/js/main.ebe94ca1.js",
+    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/grabaciones.png": "/static/media/grabaciones.18e4c4e70d365d44106e.png",
+    "static/media/proyectos.png": "/static/media/proyectos.79522360f04fdf425330.png",
+    "static/media/foro.png": "/static/media/foro.a8c2e33b173d8f1fceee.png",
+    "static/media/recursos.png": "/static/media/recursos.445c38d59dacb35f7fd3.png",
+    "static/media/radio.png": "/static/media/radio.493bc1d21889a33b894d.png",
+    "static/media/anuncios1.png": "/static/media/anuncios1.33b903a37baf66a84d4b.png",
+    "static/media/blog1.png": "/static/media/blog1.6b14eb854f61b76f4bbd.png",
+    "static/media/podcast4.png": "/static/media/podcast4.d7aa77631e65c11a2f47.png",
+    "static/media/rm_typerighter.ttf": "/static/media/rm_typerighter.ef97d5c02ba9b0d111f3.ttf",
+    "static/media/favicon.ico": "/static/media/favicon.6c88853ed23a54cc44dd.ico",
+    "static/media/musicodigo.jpg": "/static/media/musicodigo.c6357a1ada5739b6a2a4.jpg",
+    "static/media/musicodigo2.png": "/static/media/musicodigo2.edbfc947d05379948f09.png",
+    "index.html": "/index.html",
+    "main.37877670.css.map": "/static/css/main.37877670.css.map",
+    "main.ebe94ca1.js.map": "/static/js/main.ebe94ca1.js.map",
+    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.37877670.css",
+    "static/js/main.ebe94ca1.js"
+  ]
+}
