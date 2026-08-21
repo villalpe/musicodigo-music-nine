@@ -30,6 +30,7 @@ django-rest-passwordreset==1.1.0
 django-storages==1.13.1
 djangorestframework==3.12.4
 djangorestframework-simplejwt==5.2.2
+dj-database-url==0.5.0
 fancycompleter==0.9.1
 fastapi==0.73.0
 filelock==3.4.0
