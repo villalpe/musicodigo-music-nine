@@ -72,14 +72,12 @@ def uploadFile(request):
     if not f:
         return Response({"detail": "No video_file provided"}, status=status.HTTP_400_BAD_REQUEST)
 
-    # Fuerza tipo video para mp4/mov/etc
     result = cloudinary.uploader.upload(
         f,
         resource_type="video",
         folder="projects/videos"
     )
 
-    # Guarda URL en el campo (si es FileField/URL-like en tu serializer/frontend)
     project.video_file = result.get("secure_url")
     project.save()
 
