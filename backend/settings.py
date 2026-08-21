@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'rest_framework',
     'storages',
+    "cloudinary",
+    "cloudinary_storage",
     'corsheaders',
     'base.apps.BaseConfig',
 ]
@@ -190,11 +192,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 #AWS_STORAGE_BUCKET_NAME = 'musicodigodemo-bucket'
 #AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 #AWS_S3_REGION_NAME = 'us-west-1'
-
-INSTALLED_APPS += [
-    "cloudinary",
-    "cloudinary_storage",
-]
 
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
