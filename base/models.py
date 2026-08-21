@@ -5,14 +5,7 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from cloudinary_storage.storage import MediaCloudinaryStorage
 
-
 # Create your models here.
-
-class VideoMediaStorage(cloudinary_storage.storage.MediaCloudinaryStorage):
-    def _upload_options(self, resource_type, **options):
-        opts = super()._upload_options(resource_type, **options)
-        opts["resource_type"] = "video"
-        return opts
 
 class Grupo(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)    
@@ -171,25 +164,25 @@ class Activity(models.Model):
     def __str__(self):
         return str(self.activity)
 
+class VideoMediaStorage(MediaCloudinaryStorage):
+    def _upload_options(self, resource_type, **options):
+        opts = super()._upload_options(resource_type, **options)
+        opts["resource_type"] = "video"
+        return opts
+
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     author = models.CharField(max_length=200, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
-
-    video_file = models.FileField(
-        null=True,
-        blank=True,
-        storage=VideoMediaStorage()
-    )
-
+    video_file = models.FileField(null=True, blank=True, storage=VideoMediaStorage())
     time_proj = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
         return str(self.name)
-
+        
 class Resource(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
