@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-)(12sy-)&o$jzu3y2*0!hg$3p=(^cbo^yop!n)^m+wudsazryv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['musicodigo.herokuapp.com', 'localhost', '127.0.0.1', 'www.musicodigo.com', 'musicodigo.com']
+ALLOWED_HOSTS = [h.strip() for h in os.getenv("ALLOWED_HOSTS", "").split(",") if h.strip()]
 
 # Application definition
 
