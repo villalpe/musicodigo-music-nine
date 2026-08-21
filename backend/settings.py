@@ -183,18 +183,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-AWS_QUERYSTRING_AUTH = False
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#AWS_QUERYSTRING_AUTH = False
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#AWS_ACCESS_KEY_ID = 'AKIAWXACIR4CFCCT2T4N'
+#AWS_SECRET_ACCESS_KEY = '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'
+#AWS_STORAGE_BUCKET_NAME = 'musicodigodemo-bucket'
+#AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+#AWS_S3_REGION_NAME = 'us-west-1'
 
-AWS_ACCESS_KEY_ID = 'AKIAWXACIR4CFCCT2T4N'
+INSTALLED_APPS += [
+    "cloudinary",
+    "cloudinary_storage",
+]
 
-AWS_SECRET_ACCESS_KEY = 'aGqZv4Ky7H8Ofrk3lpwMaSNSkz2qA9kQgGMzmj1f'
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
+}
 
-AWS_STORAGE_BUCKET_NAME = 'musicodigodemo-bucket'
+# Archivos subidos por usuarios (MEDIA)
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-
-AWS_S3_REGION_NAME = 'us-west-1'
+# Opcional: si quieres servir static también por Cloudinary
+# STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
 
 if os.getcwd() == '/app':
     DEBUG = False
