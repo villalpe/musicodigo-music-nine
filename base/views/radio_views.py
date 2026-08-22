@@ -64,20 +64,10 @@ def deleteRadio(request, pk):
 @api_view(['POST'])
 def uploadFile(request):
     data = request.data
-    radio_id = data.get('radio_id')
+    radio_id = data['radio_id']
     radio = Radio.objects.get(_id=radio_id)
 
-    f = request.FILES.get('audio_file')
-    if not f:
-        return Response({"detail": "No audio_file provided"}, status=status.HTTP_400_BAD_REQUEST)
-
-    result = cloudinary.uploader.upload(
-        f,
-        resource_type="video",   # Cloudinary usa "video" para audio también
-        folder="radio/audio"
-    )
-
-    radio.audio_file = result.get("secure_url")
+    radio.audio_file = request.FILES.get('audio_file')
     radio.save()
 
-    return Response({"url": result.get("secure_url")}, status=status.HTTP_200_OK)
+    return Response('File was uploaded')
