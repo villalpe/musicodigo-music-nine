@@ -5,6 +5,7 @@ from rest_framework.response import Response
 #from .grupos import grupos
 from base.models import Podcast
 from base.serializer import PodcastSerializer
+import cloudinary.uploader
 
 # Create your views here.
 from rest_framework import status
