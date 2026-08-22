@@ -203,15 +203,17 @@ class Recording(models.Model):
     category = models.CharField(max_length=200, null=True, blank=True)
     licencia = models.CharField(max_length=200, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
-    audio_file = models.FileField(null=True, blank=True)
-    zip_file = models.FileField(null=True, blank=True)
+
+    audio_file = models.URLField(null=True, blank=True)  # antes FileField
+    zip_file = models.URLField(null=True, blank=True)    # opcional, si también lo subirás a cloudinary
+
     time_rec = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
         return self.name
-
+        
 class Radio(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
