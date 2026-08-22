@@ -188,9 +188,9 @@ class Resource(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     author = models.CharField(max_length=200, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
-    video_file = models.FileField(null=True, blank=True)
+    video_file = models.URLField(null=True, blank=True)  # antes FileField
     time_proj = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
-    createdAt = models.DateTimeField(auto_now_add=True)    
+    createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
