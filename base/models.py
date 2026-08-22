@@ -226,7 +226,7 @@ class Radio(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     author = models.CharField(max_length=200, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
-    audio_file = models.FileField(null=True, blank=True, storage=AudioMediaStorage())
+    audio_file = models.URLField(null=True, blank=True)  # antes FileField
     createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
