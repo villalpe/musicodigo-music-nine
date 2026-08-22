@@ -214,12 +214,19 @@ class Recording(models.Model):
     def __str__(self):
         return self.name
         
+class AudioMediaStorage(MediaCloudinaryStorage):
+    def _upload_options(self, resource_type, **options):
+        opts = super()._upload_options(resource_type, **options)
+        opts["resource_type"] = "video"   # audio en Cloudinary
+        opts["folder"] = "radio/audio"
+        return opts
+
 class Radio(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     author = models.CharField(max_length=200, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
-    audio_file = models.URLField(null=True, blank=True)   # <- antes FileField
+    audio_file = models.FileField(null=True, blank=True, storage=AudioMediaStorage())
     createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
