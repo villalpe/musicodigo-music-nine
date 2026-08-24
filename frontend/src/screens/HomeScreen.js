@@ -197,7 +197,7 @@ function HomeScreen() {
       </Col>
       <Col lg={3} className='mb-2'>
         <Card className='mb-1 p-3 mt-1 h-100 roundedCard colorcrd' >
-        <Link to={'/article'} className='d-flex justify-content-center align-items-center mt-2'>
+        <Link to={'/articles'} className='d-flex justify-content-center align-items-center mt-2'>
             <Card.Img src={picture8} class="rounded-0 img-fluid border-secondary" alt='fotoP' className='card-img-top' resizeMode='contain'/>
         </Link>
 
