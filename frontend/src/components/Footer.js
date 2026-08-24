@@ -74,7 +74,7 @@ function Footer() {
                             </LinkContainer>
                         </li>
                         <li>
-                            <LinkContainer to='/article' className='colorMenu'>
+                            <LinkContainer to='/articles' className='colorMenu'>
                                 <a className="text-decoration-none" href="#"><span className='h5' style={{ fontFamily: 'rm_typerighter'}}>Blogs</span></a>
                             </LinkContainer>                                                                                                
                         </li>
