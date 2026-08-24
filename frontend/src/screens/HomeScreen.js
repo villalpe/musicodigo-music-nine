@@ -202,7 +202,7 @@ function HomeScreen() {
         </Link>
 
         <Card.Body>
-            <Link to={'/article'} className="text-decoration-none">
+            <Link to={'/articles'} className="text-decoration-none">
                 <Card.Title as='div'>
                     <h3 className='fw-bolder' style={{ fontFamily: 'rm_typerighter'}}>Blog</h3>
                 </Card.Title>
