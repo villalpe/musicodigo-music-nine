@@ -127,8 +127,8 @@ function Footer() {
                 <div class="row pt-2">
                     <div class="col-12">
                         <span class="text-left text-light h5" style={{ fontFamily: 'rm_typerighter'}}>
-                            Copyright &copy; 2022 musicodigo 
-                            | Designed by <a href="https://www.eduardovillalpando.com" target="_blank" class='text-light'>Eduardo Villalpando Prieto</a>
+                            Copyright &copy; 2022  
+                            | diseño operativo: Diego Tinajero, desarollo web: Eduardo Villalpando, diseño visual: Jéssica Rangel. Código fuente bajo licencia GNU GPL v3.0
                         </span>
                     </div>
                 </div>
