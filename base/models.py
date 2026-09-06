@@ -3,7 +3,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
-
+from cloudinary_storage.storage import MediaCloudinaryStorage
 
 # Create your models here.
 
@@ -82,15 +82,15 @@ class Podcast(models.Model):
     author = models.CharField(max_length=200, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
     rating = models.IntegerField(null=True, blank=True, default=0)
-    audio_file = models.FileField(null=True, blank=True)
+    audio_file = models.URLField(null=True, blank=True)  # <-- cambio
     time_pod = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
-    transcription = models.TextField(null=True, blank=True)     
-    createdAt = models.DateTimeField(auto_now_add=True)    
+    transcription = models.TextField(null=True, blank=True)
+    createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
         return str(self.name)
-
+        
 class Bookmark(models.Model):
     grupo = models.ForeignKey(Grupo, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -164,27 +164,33 @@ class Activity(models.Model):
     def __str__(self):
         return str(self.activity)
 
+class VideoMediaStorage(MediaCloudinaryStorage):
+    def _upload_options(self, resource_type, **options):
+        opts = super()._upload_options(resource_type, **options)
+        opts["resource_type"] = "video"
+        return opts
+
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     author = models.CharField(max_length=200, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
-    video_file = models.FileField(null=True, blank=True)
+    video_file = models.URLField(null=True, blank=True)
     time_proj = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
-    createdAt = models.DateTimeField(auto_now_add=True)    
+    createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
         return str(self.name)
-
+        
 class Resource(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     author = models.CharField(max_length=200, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
-    video_file = models.FileField(null=True, blank=True)
+    video_file = models.URLField(null=True, blank=True)  # antes FileField
     time_proj = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
-    createdAt = models.DateTimeField(auto_now_add=True)    
+    createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
@@ -197,27 +203,36 @@ class Recording(models.Model):
     category = models.CharField(max_length=200, null=True, blank=True)
     licencia = models.CharField(max_length=200, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
-    audio_file = models.FileField(null=True, blank=True)
-    zip_file = models.FileField(null=True, blank=True)
+
+    audio_file = models.URLField(null=True, blank=True)  # antes FileField
+    zip_file = models.URLField(null=True, blank=True)    # opcional, si también lo subirás a cloudinary
+
     time_rec = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
         return self.name
+        
+class AudioMediaStorage(MediaCloudinaryStorage):
+    def _upload_options(self, resource_type, **options):
+        opts = super()._upload_options(resource_type, **options)
+        opts["resource_type"] = "video"   # audio en Cloudinary
+        opts["folder"] = "radio/audio"
+        return opts
 
 class Radio(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     author = models.CharField(max_length=200, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
-    audio_file = models.FileField(null=True, blank=True)
+    audio_file = models.URLField(null=True, blank=True)  # antes FileField
     createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
         return self.name
-
+        
 class Article(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)

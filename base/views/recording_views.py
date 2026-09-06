@@ -7,6 +7,7 @@ from django.core.files import File
 from base.models import Recording
 from base.serializer import RecordingSerializer
 from django.db.models import Q
+import cloudinary.uploader
 
 # Create your views here.
 from rest_framework import status
@@ -96,14 +97,23 @@ def getRecordingsByCategoryRM(request):
 @api_view(['POST'])
 def uploadFile(request):
     data = request.data
-
-    recording_id = data['recording_id']
+    recording_id = data.get('recording_id')
     recording = Recording.objects.get(_id=recording_id)
 
-    recording.audio_file = request.FILES.get('audio_file')
+    f = request.FILES.get('audio_file')
+    if not f:
+        return Response({"detail": "No audio_file provided"}, status=status.HTTP_400_BAD_REQUEST)
+
+    result = cloudinary.uploader.upload(
+        f,
+        resource_type="video",   # Cloudinary maneja audio en tipo video
+        folder="recordings/audio"
+    )
+
+    recording.audio_file = result.get("secure_url")
     recording.save()
 
-    return Response('File was uploaded')        
+    return Response({"url": result.get("secure_url")}, status=status.HTTP_200_OK)        
 
 @api_view(['POST'])
 def uploadZipFile(request):

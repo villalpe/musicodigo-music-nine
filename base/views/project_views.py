@@ -5,6 +5,7 @@ from rest_framework.response import Response
 #from .grupos import grupos
 from base.models import Project
 from base.serializer import ProjectSerializer
+import cloudinary.uploader
 
 # Create your views here.
 from rest_framework import status
@@ -64,11 +65,20 @@ def deleteProject(request, pk):
 @api_view(['POST'])
 def uploadFile(request):
     data = request.data
-
-    project_id = data['project_id']
+    project_id = data.get('project_id')
     project = Project.objects.get(_id=project_id)
 
-    project.video_file = request.FILES.get('video_file')
+    f = request.FILES.get('video_file')
+    if not f:
+        return Response({"detail": "No video_file provided"}, status=status.HTTP_400_BAD_REQUEST)
+
+    result = cloudinary.uploader.upload(
+        f,
+        resource_type="video",
+        folder="projects/videos"
+    )
+
+    project.video_file = result.get("secure_url")
     project.save()
 
-    return Response('File was uploaded')
+    return Response({"url": result.get("secure_url")}, status=status.HTTP_200_OK)

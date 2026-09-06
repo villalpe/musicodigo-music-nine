@@ -197,14 +197,14 @@ function HomeScreen() {
       </Col>
       <Col lg={3} className='mb-2'>
         <Card className='mb-1 p-3 mt-1 h-100 roundedCard colorcrd' >
-        <Link to={'/article'} className='d-flex justify-content-center align-items-center mt-2'>
+        <Link to={'/articles'} className='d-flex justify-content-center align-items-center mt-2'>
             <Card.Img src={picture8} class="rounded-0 img-fluid border-secondary" alt='fotoP' className='card-img-top' resizeMode='contain'/>
         </Link>
 
         <Card.Body>
-            <Link to={'/article'} className="text-decoration-none">
+            <Link to={'/articles'} className="text-decoration-none">
                 <Card.Title as='div'>
-                    <h3 className='fw-bolder' style={{ fontFamily: 'rm_typerighter'}}>Blog</h3>
+                    <h3 className='fw-bolder' style={{ fontFamily: 'rm_typerighter'}}>Blog Articulo</h3>
                 </Card.Title>
             </Link>
             <Card.Text as='div'>

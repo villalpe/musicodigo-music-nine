@@ -35,6 +35,8 @@ function Footer() {
                     </ul>
                 </div>
 
+                <div style={{background:'red', color:'white'}}>FOOTER REAL TEST</div>
+    
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light"><span className='h3' style={{ fontFamily: 'rm_typerighter'}}>Temas</span></h2>
                     <ul class="list-unstyled text-light footer-link-list">
@@ -74,7 +76,7 @@ function Footer() {
                             </LinkContainer>
                         </li>
                         <li>
-                            <LinkContainer to='/article' className='colorMenu'>
+                            <LinkContainer to='/articles' className='colorMenu'>
                                 <a className="text-decoration-none" href="#"><span className='h5' style={{ fontFamily: 'rm_typerighter'}}>Blogs</span></a>
                             </LinkContainer>                                                                                                
                         </li>
@@ -127,8 +129,7 @@ function Footer() {
                 <div class="row pt-2">
                     <div class="col-12">
                         <span class="text-left text-light h5" style={{ fontFamily: 'rm_typerighter'}}>
-                            Copyright &copy; 2022 musicodigo 
-                            | Designed by <a href="https://www.eduardovillalpando.com" target="_blank" class='text-light'>Eduardo Villalpando Prieto</a>
+                            © 2022 Diseño operativo: Diego Tinajero, desarrollo: Eduardo Villalpando, diseño Visual: Jéssica Rangel. Código fuente bajo licencia GNU GPL v3.0.
                         </span>
                     </div>
                 </div>

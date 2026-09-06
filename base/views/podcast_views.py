@@ -5,6 +5,7 @@ from rest_framework.response import Response
 #from .grupos import grupos
 from base.models import Podcast
 from base.serializer import PodcastSerializer
+import cloudinary.uploader
 
 # Create your views here.
 from rest_framework import status
@@ -78,11 +79,20 @@ def uploadImage(request):
 @api_view(['POST'])
 def uploadFile(request):
     data = request.data
-
-    podcast_id = data['podcast_id']
+    podcast_id = data.get('podcast_id')
     podcast = Podcast.objects.get(_id=podcast_id)
 
-    podcast.audio_file = request.FILES.get('audio_file')
+    f = request.FILES.get('audio_file')
+    if not f:
+        return Response({"detail": "No audio_file provided"}, status=status.HTTP_400_BAD_REQUEST)
+
+    result = cloudinary.uploader.upload(
+        f,
+        resource_type="video",   # audio en cloudinary
+        folder="podcasts/audio"
+    )
+
+    podcast.audio_file = result.get("secure_url")
     podcast.save()
 
-    return Response('File was uploaded')        
+    return Response({"url": result.get("secure_url")}, status=status.HTTP_200_OK)        

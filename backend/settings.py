@@ -15,6 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 import os
+import dj_database_url
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-)(12sy-)&o$jzu3y2*0!hg$3p=(^cbo^yop!n)^m+wudsazryv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['musicodigo.herokuapp.com', 'localhost', '127.0.0.1', 'www.musicodigo.com', 'musicodigo.com']
+ALLOWED_HOSTS = ['musicodigo-music-nine.onrender.com']
 
 # Application definition
 
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'rest_framework',
     'storages',
+    "cloudinary",
+    "cloudinary_storage",
     'corsheaders',
     'base.apps.BaseConfig',
 ]
@@ -124,16 +127,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'musicodigo',
-        'USER': 'villalpe',
-        'PASSWORD': os.environ.get('DB_PASS'),
-        'HOST': 'musicodigo-identifier.cqxjlv3zpj7v.us-east-1.rds.amazonaws.com',
-        'PORT':'5432',
-    }
+    "default": dj_database_url.config(
+        default="postgres://postgres:postgres@localhost:5432/postgres",
+        conn_max_age=600
+    )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -187,18 +185,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-AWS_QUERYSTRING_AUTH = False
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#AWS_QUERYSTRING_AUTH = False
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#AWS_ACCESS_KEY_ID = 'AKIAWXACIR4CFCCT2T4N'
+#AWS_SECRET_ACCESS_KEY = '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'
+#AWS_STORAGE_BUCKET_NAME = 'musicodigodemo-bucket'
+#AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+#AWS_S3_REGION_NAME = 'us-west-1'
 
-AWS_ACCESS_KEY_ID = 'AKIAWXACIR4CFCCT2T4N'
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
+}
 
-AWS_SECRET_ACCESS_KEY = 'aGqZv4Ky7H8Ofrk3lpwMaSNSkz2qA9kQgGMzmj1f'
+# Archivos subidos por usuarios (MEDIA)
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
-AWS_STORAGE_BUCKET_NAME = 'musicodigodemo-bucket'
-
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-
-AWS_S3_REGION_NAME = 'us-west-1'
+# Opcional: si quieres servir static también por Cloudinary
+# STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
 
 if os.getcwd() == '/app':
     DEBUG = False
