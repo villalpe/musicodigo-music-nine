@@ -128,7 +128,7 @@ function Footer() {
                     <div class="col-12">
                         <span class="text-left text-light h5" style={{ fontFamily: 'rm_typerighter'}}>
                             Copyright &copy; 2022  
-                            FOOTER TEST 2026-09-06 12:00 1234
+                            FOOTER TEST 2026-09-06 12:00 12345
                         </span>
                     </div>
                 </div>
