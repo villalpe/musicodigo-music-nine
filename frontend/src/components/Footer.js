@@ -117,7 +117,7 @@ function Footer() {
                         </ul>
                     </div>
                     <div class="col-md-6 d-flex justify-content-center align-items-center mb-1">
-                        <Link to={'/profilelist'} className='input-group-text btn-success text-decoration-none' style={{color: '#090D3A', fontFamily: 'rm_typerighter'}}>Registrate en la Comunidad musicodigo</Link>
+                        <Link to={'/profilelist'} className='input-group-text btn-success text-decoration-none' style={{color: '#090D3A', fontFamily: 'rm_typerighter'}}>Registrate en la Comunidad Musicodigo</Link>
                     </div>
                 </div>
             
