@@ -35,6 +35,8 @@ function Footer() {
                     </ul>
                 </div>
 
+                <div style={{background:'red', color:'white'}}>FOOTER REAL TEST</div>
+    
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light"><span className='h3' style={{ fontFamily: 'rm_typerighter'}}>Temas</span></h2>
                     <ul class="list-unstyled text-light footer-link-list">
