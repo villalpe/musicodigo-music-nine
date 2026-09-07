@@ -128,7 +128,6 @@ function Footer() {
                 <div class="row pt-2">
                     <div class="col-12">
                         <span class="text-left text-light h5" style={{ fontFamily: 'rm_typerighter'}}>
-                            [render-check-2026-09-06-1]
                             © 2022 Diseño operativo: Diego Tinajero, desarrollo: Eduardo Villalpando, diseño Visual: Jéssica Rangel. código fuente bajo licencia GNU GPL v3.0.
                         </span>
                     </div>
